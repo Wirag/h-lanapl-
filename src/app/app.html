@@ -1,0 +1,14 @@
+<main class="app-content">
+  <router-outlet />
+</main>
+
+<nav class="app-nav">
+  <a routerLink="/today" routerLinkActive="active" class="app-nav__link">
+    <span class="app-nav__icon" aria-hidden="true">📝</span>
+    <span class="app-nav__label">Today</span>
+  </a>
+  <a routerLink="/calendar" routerLinkActive="active" class="app-nav__link">
+    <span class="app-nav__icon" aria-hidden="true">📅</span>
+    <span class="app-nav__label">Calendar</span>
+  </a>
+</nav>
