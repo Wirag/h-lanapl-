@@ -1,0 +1,8 @@
+<header class="day-header">
+  <a routerLink="/calendar" class="back-link" aria-label="Vissza a naptárhoz">
+    <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>
+  </a>
+  <h1>{{ date() | date: 'y. MMMM d., EEEE' }}</h1>
+</header>
+
+<app-entry-form [date]="date()" />

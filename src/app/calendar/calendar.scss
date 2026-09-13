@@ -1,0 +1,89 @@
+@use '../../styles/tokens';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  h1 {
+    @include tokens.text-headline-md;
+    color: var(--color-on-surface);
+    margin: 0;
+    text-transform: capitalize;
+  }
+}
+
+.nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: var(--radius-full);
+  background: var(--color-surface-container-low);
+  color: var(--color-on-surface-variant);
+  cursor: pointer;
+}
+
+.weekday-row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.weekday-label {
+  @include tokens.text-label-sm;
+  color: var(--color-on-surface-variant);
+  text-align: center;
+}
+
+.month-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--space-xs);
+}
+
+.day-cell {
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  color: var(--color-on-surface);
+}
+
+.day-cell--future {
+  color: var(--color-outline-variant);
+}
+
+.day-cell--link {
+  background: var(--color-surface-container-low);
+  cursor: pointer;
+}
+
+.day-cell--today {
+  box-shadow: inset 0 0 0 2px var(--color-primary);
+  font-weight: 600;
+}
+
+.day-cell--has-entry {
+  background: var(--color-primary-fixed);
+  color: var(--color-on-primary-fixed);
+}
+
+.day-cell__number {
+  @include tokens.text-body-sm;
+}
+
+.day-cell__mood {
+  font-size: 14px;
+}

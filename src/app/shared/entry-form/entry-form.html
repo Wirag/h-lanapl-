@@ -1,0 +1,63 @@
+@if (!loaded()) {
+  <p class="loading">Betöltés…</p>
+} @else {
+  <section class="mood-section">
+    <div class="section-header">
+      <h2>Hogyan érezted magad?</h2>
+    </div>
+    <div class="mood-grid" role="radiogroup" aria-label="Hangulat">
+      @for (option of moodOptions; track option.value) {
+        <button
+          type="button"
+          class="mood-btn"
+          [class.active]="mood() === option.value"
+          role="radio"
+          [attr.aria-checked]="mood() === option.value"
+          (click)="selectMood(option.value)"
+        >
+          <span class="mood-btn__icon material-symbols-outlined" aria-hidden="true">{{
+            option.icon
+          }}</span>
+          <span class="mood-btn__label">{{ option.label }}</span>
+        </button>
+      }
+    </div>
+  </section>
+
+  <section class="items-section">
+    <div class="section-header">
+      <h2>A nap 3 hálaadása</h2>
+      <span class="progress-badge">{{ filledCount() }}/3 kész</span>
+    </div>
+
+    @for (item of items(); track $index) {
+      <label class="item-field">
+        <span class="item-field__label">{{ $index + 1 }}.</span>
+        <textarea
+          rows="2"
+          maxlength="280"
+          placeholder="Miért vagy hálás ma?"
+          [ngModel]="item"
+          (ngModelChange)="setItem($index, $event)"
+        ></textarea>
+      </label>
+    }
+  </section>
+
+  <div class="save-row">
+    @if (isDirty()) {
+      <span class="save-row__hint">Nincs mentve</span>
+    }
+    <button type="button" class="save-btn" [disabled]="saving()" (click)="save()">
+      <span class="material-symbols-outlined" aria-hidden="true">save</span>
+      Mentés
+    </button>
+  </div>
+
+  @if (showSavedToast()) {
+    <div class="toast">
+      <span class="material-symbols-outlined" aria-hidden="true">sentiment_very_satisfied</span>
+      <span>A napod szeretettel elmentve! ✨</span>
+    </div>
+  }
+}

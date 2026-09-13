@@ -1,2 +1,41 @@
-<h1>Calendar</h1>
-<p>Month view of past entries goes here (HN-8).</p>
+<header class="calendar-header">
+  <button type="button" class="nav-btn" (click)="previousMonth()" aria-label="Előző hónap">
+    <span class="material-symbols-outlined" aria-hidden="true">chevron_left</span>
+  </button>
+  <h1>{{ viewedMonth() | date: 'y. MMMM' }}</h1>
+  <button type="button" class="nav-btn" (click)="nextMonth()" aria-label="Következő hónap">
+    <span class="material-symbols-outlined" aria-hidden="true">chevron_right</span>
+  </button>
+</header>
+
+<div class="weekday-row">
+  @for (label of weekdayLabels; track label) {
+    <span class="weekday-label">{{ label }}</span>
+  }
+</div>
+
+<div class="month-grid">
+  @for (cell of monthGrid(); track cell.iso || $index) {
+    @if (!cell.inMonth) {
+      <div class="day-cell day-cell--blank"></div>
+    } @else if (cell.isFuture) {
+      <div class="day-cell day-cell--future">
+        <span class="day-cell__number">{{ cell.dayOfMonth }}</span>
+      </div>
+    } @else {
+      <a
+        class="day-cell day-cell--link"
+        [class.day-cell--today]="cell.isToday"
+        [class.day-cell--has-entry]="!!moodIcon(cell.entry)"
+        [routerLink]="['/calendar', cell.iso]"
+      >
+        <span class="day-cell__number">{{ cell.dayOfMonth }}</span>
+        @if (moodIcon(cell.entry); as icon) {
+          <span class="material-symbols-outlined day-cell__mood" aria-hidden="true">{{
+            icon
+          }}</span>
+        }
+      </a>
+    }
+  }
+</div>

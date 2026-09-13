@@ -1,2 +1,14 @@
-<h1>Today</h1>
-<p>Gratitude entry form goes here (HN-6).</p>
+<header class="today-header">
+  <div class="today-header__top">
+    <span class="today-header__date">{{ today | date: 'y. MMMM d., EEEE' }}</span>
+    @if (streak() > 0) {
+      <span class="streak-pill">
+        <span class="material-symbols-outlined" aria-hidden="true">local_fire_department</span>
+        {{ streak() }} napos
+      </span>
+    }
+  </div>
+  <h1 class="today-header__greeting">{{ greeting }} ✨</h1>
+</header>
+
+<app-entry-form [date]="date" (saved)="onEntrySaved()" />

@@ -1,9 +1,12 @@
 {
-  "name": "halanaplo",
-  "short_name": "halanaplo",
+  "name": "Hálanapló",
+  "short_name": "Hálanapló",
+  "description": "Napi 3 hálaadás és hangulat egy percben.",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
+  "theme_color": "#994124",
+  "background_color": "#fff8f5",
   "icons": [
     {
       "src": "icons/icon-72x72.png",

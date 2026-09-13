@@ -1,0 +1,29 @@
+<header class="settings-header">
+  <a routerLink="/today" class="back-link" aria-label="Vissza">
+    <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>
+  </a>
+  <h1>Beállítások</h1>
+</header>
+
+<section class="settings-section">
+  <h2>Adatmentés</h2>
+  <p class="settings-section__hint">
+    Nincs felhő mentés — a naplód csak ezen a készüléken tárolódik. Mentsd le rendszeresen, hogy
+    ne veszíts el semmit.
+  </p>
+
+  <button type="button" class="settings-btn" [disabled]="exporting()" (click)="export()">
+    <span class="material-symbols-outlined" aria-hidden="true">download</span>
+    Mentés exportálása
+  </button>
+
+  <label class="settings-btn settings-btn--file">
+    <span class="material-symbols-outlined" aria-hidden="true">upload</span>
+    Mentés importálása
+    <input type="file" accept="application/json" hidden (change)="onFileSelected($event)" />
+  </label>
+
+  @if (statusMessage(); as message) {
+    <p class="status-message" [class.status-message--error]="statusIsError()">{{ message }}</p>
+  }
+</section>
