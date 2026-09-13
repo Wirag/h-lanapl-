@@ -22,6 +22,7 @@ Requires Node.js (managed via nvm-windows in this environment; `nvm use 24.21.0`
 - `npm test -- --testNamePattern <pattern>` — run a subset of tests
 - `ng generate component <path>` — scaffold a new component (SCSS inline styles by default, per `angular.json` schematics config)
 - `node scripts/generate-icons.mjs` — regenerate `public/icons/*.png` and `public/favicon.png` from `scripts/icon-source.svg` (needs `sharp`: `npm install --no-save sharp` first, it's not a project dependency)
+- `npm run deploy` — build and deploy to Cloudflare Pages via `npx wrangler pages deploy` (needs `wrangler login` once; `wrangler` isn't a project dependency, `npx` fetches it on demand)
 
 ## Architecture
 
@@ -42,6 +43,7 @@ Standard Angular CLI (v22) application, generated with `@angular/build` (esbuild
 - `ngsw-config.json` — Angular service worker caching config; only applied in the `production` build configuration, not in `ng serve`.
 - `src/test-setup.ts` — Vitest global setup (wired via `angular.json`'s `test.options.setupFiles`): polyfills `indexedDB` with `fake-indexeddb` and resets it before every test so specs don't leak state into each other, plus a `URL.createObjectURL` stub for the export service.
 - `design/` — the visual design source (`DESIGN.md` token tables, `code.html`/`screen.png` mockup). Not part of the build; consult it before changing colors/typography rather than guessing new values.
+- `wrangler.jsonc` — Cloudflare Pages deploy config (static site, `pages_build_output_dir: dist/halanaplo/browser`, no Pages Functions). `public/_redirects` gives the Angular router a SPA fallback (`/* /index.html 200`) so deep links don't 404 at the edge.
 
 No backend/API layer exists or is planned — all persistence is local to the device via `EntryStorageService`.
 
