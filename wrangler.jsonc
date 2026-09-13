@@ -2,5 +2,10 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "halanaplo",
   "compatibility_date": "2026-09-13",
-  "pages_build_output_dir": "dist/halanaplo/browser"
+  // Assets-only Worker: the Angular production build output is uploaded as-is.
+  "assets": {
+    "directory": "./dist/halanaplo/browser",
+    // Serves index.html for unknown paths so Angular router deep links do not 404.
+    "not_found_handling": "single-page-application"
+  }
 }
