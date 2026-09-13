@@ -1,0 +1,163 @@
+// Design tokens translated from design/DESIGN.md ("Warm Mindful Sanctuary").
+// Color/spacing/radius names match DESIGN.md 1:1 so it stays the source of truth.
+
+:root {
+  // Colors
+  --color-surface: #fff8f5;
+  --color-surface-dim: #e2d8d3;
+  --color-surface-bright: #fff8f5;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #fcf2ec;
+  --color-surface-container: #f6ece7;
+  --color-surface-container-high: #f0e6e1;
+  --color-surface-container-highest: #ebe0db;
+  --color-on-surface: #1f1b18;
+  --color-on-surface-variant: #56423d;
+  --color-inverse-surface: #352f2c;
+  --color-inverse-on-surface: #f9efea;
+  --color-outline: #89726b;
+  --color-outline-variant: #dcc1b9;
+  --color-surface-tint: #9c4326;
+  --color-primary: #994124;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #b8593a;
+  --color-on-primary-container: #fffbff;
+  --color-inverse-primary: #ffb59e;
+  --color-secondary: #466550;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #c5e8cd;
+  --color-on-secondary-container: #4a6a54;
+  --color-tertiary: #805218;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #9c6a2e;
+  --color-on-tertiary-container: #fffbff;
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+  --color-primary-fixed: #ffdbd0;
+  --color-primary-fixed-dim: #ffb59e;
+  --color-on-primary-fixed: #3a0b00;
+  --color-on-primary-fixed-variant: #7d2d11;
+  --color-secondary-fixed: #c8ebd0;
+  --color-secondary-fixed-dim: #accfb4;
+  --color-on-secondary-fixed: #022110;
+  --color-on-secondary-fixed-variant: #2f4d39;
+  --color-tertiary-fixed: #ffdcbb;
+  --color-tertiary-fixed-dim: #f9ba77;
+  --color-on-tertiary-fixed: #2c1700;
+  --color-on-tertiary-fixed-variant: #673d02;
+  --color-background: #fff8f5;
+  --color-on-background: #1f1b18;
+  --color-surface-variant: #ebe0db;
+
+  // Typography families
+  --font-family-headline: 'Literata', Georgia, serif;
+  --font-family-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  // Spacing
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2.25rem;
+  --gutter-sm: 0.75rem;
+  --gutter: 1rem;
+  --gutter-lg: 1.5rem;
+  --margin-sm: 1rem;
+  --margin: 1.25rem;
+  --margin-lg: 2rem;
+
+  // Radii
+  --radius-sm: 0.25rem;
+  --radius: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+}
+
+// Typography scale mixins — apply with @include text-*() in component styles.
+@mixin text-headline-xl {
+  font-family: var(--font-family-headline);
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 48px;
+  letter-spacing: -0.02em;
+}
+
+@mixin text-headline-xl-mobile {
+  font-family: var(--font-family-headline);
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 38px;
+  letter-spacing: -0.015em;
+}
+
+@mixin text-headline-lg {
+  font-family: var(--font-family-headline);
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 40px;
+  letter-spacing: -0.01em;
+}
+
+@mixin text-headline-lg-mobile {
+  font-family: var(--font-family-headline);
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 32px;
+  letter-spacing: -0.01em;
+}
+
+@mixin text-headline-md {
+  font-family: var(--font-family-headline);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+}
+
+@mixin text-body-lg {
+  font-family: var(--font-family-body);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
+}
+
+@mixin text-body-md {
+  font-family: var(--font-family-body);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+@mixin text-body-sm {
+  font-family: var(--font-family-body);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+@mixin text-label-lg {
+  font-family: var(--font-family-body);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: 0.01em;
+}
+
+@mixin text-label-md {
+  font-family: var(--font-family-body);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0.03em;
+}
+
+@mixin text-label-sm {
+  font-family: var(--font-family-body);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 14px;
+  letter-spacing: 0.04em;
+}

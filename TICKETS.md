@@ -37,7 +37,7 @@ Status legend: `[ ]` todo · `[x]` done
 **Description:** Define the TypeScript model for a single day's journal entry: date (ISO `yyyy-MM-dd`, one entry per calendar day), exactly 3 gratitude items (strings), and a mood/status value for the day.
 **Acceptance criteria:**
 - `JournalEntry` interface defined with `date`, `items: [string, string, string]` (or equivalent fixed-length structure), and `mood`.
-- Mood is a fixed, small set of values (e.g. an enum of 4–6 states), not free text — confirm the exact set with the user before finalizing (HN-5 depends on this).
+- Mood is a fixed 5-value enum, finalized from the `design/` mockup: `kimerult` (exhausted, icon `bedtime`), `borus` (gloomy, icon `rainy`), `bekes` (peaceful, icon `spa`), `vidam` (cheerful, icon `mood`), `halas` (grateful, icon `favorite`).
 
 ### HN-4 — Local persistence service
 **Status:** [ ]
@@ -60,6 +60,7 @@ Status legend: `[ ]` todo · `[x]` done
 - Selecting a mood is a single tap and visually confirms the current selection.
 - Selection persists via HN-4 immediately (or on entry save — decide alongside HN-6).
 **Depends on:** HN-3, HN-4
+**Notes:** Build against the 5-icon grid layout in `design/code.html`'s `#mood-selector` block (Material Symbols icons, active state = filled icon + primary-color ring), once HN-15/HN-16 land the design tokens and icon font.
 
 ### HN-6 — Three gratitude items input
 **Status:** [ ]
@@ -70,6 +71,7 @@ Status legend: `[ ]` todo · `[x]` done
 - Autosave on change (or explicit Save button — pick one and apply consistently across the app).
 - Reopening the app the same day shows the already-entered items, editable.
 **Depends on:** HN-3, HN-4
+**Notes:** Keep the 3 inputs uniform (not the mockup's differentiated highlighted-quote/hashtag/plain-input treatment) — styled consistently via the HN-15 design tokens once those land.
 
 ### HN-7 — Empty/incomplete entry handling
 **Status:** [ ]
@@ -152,3 +154,42 @@ Status legend: `[ ]` todo · `[x]` done
 - Import accepts a file in the HN-13 export format.
 - Conflicts (same date exists both locally and in import) are handled predictably (e.g. skip, overwrite, or ask — pick one).
 **Depends on:** HN-13
+
+---
+
+## Epic: Design System
+
+Sourced from the `design/` mockup (`DESIGN.md`, `code.html`, `screen.png`) — a Hungarian-language "Warm Mindful Sanctuary" visual design (terracotta/sage/amber palette, Literata + Plus Jakarta Sans typography). See the app name itself ("Hálanapló") — UI copy throughout the app is Hungarian.
+
+### HN-15 — Design system foundation
+**Status:** [ ]
+**Description:** Translate `design/DESIGN.md`'s color, typography, and spacing tables into CSS custom properties, and load the mockup's fonts.
+**Acceptance criteria:**
+- SCSS tokens partial (e.g. `src/styles/_tokens.scss`) defines the full color set, type scale, spacing scale, and radii from `DESIGN.md`, named 1:1 with it.
+- `src/index.html` loads Literata, Plus Jakarta Sans, and Material Symbols Outlined (Google Fonts), matching `design/code.html`'s `<head>`.
+- `src/styles.scss` imports the tokens and applies the base font/background/text color globally.
+**Depends on:** HN-1
+
+### HN-16 — Restyle app shell to the design system
+**Status:** [ ]
+**Description:** Re-skin the existing header/bottom-nav shell (HN-2) using the HN-15 tokens: fixed header bar with the app name, Material Symbols icons in the bottom nav (`wb_sunny`/`calendar_today`) instead of emoji, Hungarian nav labels (`Mai nap`/`Naptár`).
+**Acceptance criteria:**
+- Header and nav use the new color/type tokens, not Angular defaults.
+- No profile photo, greeting, streak, or settings icon yet (HN-17/18/19).
+- `app.spec.ts` updated for the new Hungarian nav labels.
+**Depends on:** HN-2, HN-15
+
+### HN-17 — Greeting & date header on Today
+**Status:** [ ]
+**Description:** Time-of-day Hungarian greeting (e.g. "Jó estét!") and formatted date on the Today view, per the mockup — no personalized name, since the app has no accounts.
+**Depends on:** HN-15
+
+### HN-18 — Streak counter
+**Status:** [ ]
+**Description:** Show a "N napos" streak pill in the header, counting consecutive days with a saved entry, per the mockup.
+**Depends on:** HN-4, HN-15
+
+### HN-19 — Settings entry point
+**Status:** [ ]
+**Description:** A `/settings` route reachable from a header icon. Content TBD — first candidates are the export/import features from HN-13/HN-14.
+**Depends on:** HN-15

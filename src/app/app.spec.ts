@@ -17,14 +17,14 @@ describe('App', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render nav links to Today and Calendar', async () => {
+  it('should render nav links to Mai nap and Naptár', async () => {
     const fixture = TestBed.createComponent(App);
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
     const links = Array.from(compiled.querySelectorAll('.app-nav__link')).map((el) =>
       el.textContent?.trim(),
     );
-    expect(links.some((text) => text?.includes('Today'))).toBe(true);
-    expect(links.some((text) => text?.includes('Calendar'))).toBe(true);
+    expect(links.some((text) => text?.includes('Mai nap'))).toBe(true);
+    expect(links.some((text) => text?.includes('Naptár'))).toBe(true);
   });
 });
